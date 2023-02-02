@@ -6,7 +6,7 @@ const secret = process.env.JWT_SECRET || '';
 
 const isBodyValid = (username, password) => username && password;
 
-module.exports = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     if (!isBodyValid(username, password)) {
@@ -26,3 +26,5 @@ module.exports = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
+
+module.exports = login;
