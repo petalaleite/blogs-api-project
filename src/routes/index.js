@@ -1,7 +1,7 @@
 const userRoutes = require('./user.routes');
-const login = require('../controllers/login');
+const loginRoutes = require('./login.routes');
 
 module.exports = {
   userRoutes,
-  login,
+  loginRoutes,
 };

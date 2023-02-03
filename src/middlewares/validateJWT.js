@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 require('dotenv/config');
 const { userService } = require('../services');
 
-const secret = process.env.JWT_SECRET || '';
+const secret = process.env.JWT_SECRET || 'tolkien';
 
-module.exports = async (req, res, next) => {
+const validateJWT = async (req, res, next) => {
   const token = req.header('Authorization');
   if (!token) {
     return res.status(401).json({ message: 'Token not found' });
@@ -18,4 +18,8 @@ module.exports = async (req, res, next) => {
     } catch (err) {
       return res.status(401).json({ message: err.message });
     }   
+};
+
+module.exports = {
+  validateJWT,
 };

@@ -2,7 +2,7 @@ require('dotenv/config');
 const jwt = require('jsonwebtoken');
 const { userService } = require('../services');
 
-const secret = process.env.JWT_SECRET || '';
+const secret = process.env.JWT_SECRET || 'tolkien';
 
 const isBodyValid = (username, password) => username && password;
 
@@ -27,4 +27,6 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = login;
+module.exports = {
+  login,
+};
