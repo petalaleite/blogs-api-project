@@ -12,7 +12,7 @@ const validateJWT = async (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, secret);
-    const user = await userService.getByUsername(decoded.padStart.userId);
+    const user = await userService.getById(decoded.padStart.userId);
     req.user = user;
     next();
     } catch (err) {

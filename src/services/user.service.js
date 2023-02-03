@@ -1,9 +1,10 @@
 const { User } = require('../models');
+//  attributes: { exclude: ['password'] } }
 
-const getById = async (userId) => {
- const user = await User.findOne({ where: { userId }, attributes: { exclude: ['password'] } });
+const getUserById = async (id) => {
+ const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
  if (!user) return ({ type: 'USER_NOT_FOUND', message: 'Users does not exist' });
- return { type: null, message: user };
+ return { message: user };
 };
 
 const getEmailAndPassword = async (email, password) => {
@@ -12,7 +13,14 @@ const getEmailAndPassword = async (email, password) => {
   return user;
 };
 
+const createUser = async (displayName, email, password, image) => {
+ const user = await User.create({ displayName, email, password, image });
+ console.log('log do create user', user);
+ return user;
+};
+
 module.exports = {
   getEmailAndPassword,
-  getById,
+  getUserById,
+  createUser,
 };

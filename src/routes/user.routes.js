@@ -1,11 +1,12 @@
 const express = require('express');
 const { userController } = require('../controllers');
-const { validateJWT } = require('../middlewares/validateJWT');
+const { validateNameAndPassword, validateEmail } = require('../middlewares/validateUser');
+// const { validateJWT } = require('../middlewares/validateJWT');
 
-const router = express.Router();
+const userRoutes = express.Router();
 
-router.get('/', validateJWT, userController.listUsers);
-router.get('/:id', userController.getUserById);
-// router.post('/', userController.createUser);
+userRoutes.get('/', userController.listUsers);
+userRoutes.get('/:id', userController.getUserById);
+userRoutes.post('/', validateNameAndPassword, validateEmail, userController.createUser);
 
-module.exports = router;
+module.exports = userRoutes;
