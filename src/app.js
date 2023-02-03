@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 app.use('/login', loginRoutes);
-app.use('/users', userRoutes);
+app.use('/user', userRoutes);
 
 // ...
 
