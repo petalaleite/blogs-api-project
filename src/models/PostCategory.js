@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       as: 'blogPosts',
       through: PostCategory,
       foreignKey: 'categoryId',
-      otherKey: 'postI'
+      otherKey: 'postId'
     })
   }
   return PostCategory
