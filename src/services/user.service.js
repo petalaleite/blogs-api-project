@@ -4,7 +4,7 @@ const { User } = require('../models');
 const getUserById = async (id) => {
  const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
  if (!user) return ({ type: 'USER_NOT_FOUND', message: 'Users does not exist' });
- return { message: user };
+ return user;
 };
 
 const getEmailAndPassword = async (email, password) => {
