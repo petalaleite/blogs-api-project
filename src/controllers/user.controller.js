@@ -1,13 +1,8 @@
 const { userService } = require('../services');
 
 const listUsers = async (req, res) => {
-  try {
-    const users = await userService.getUsers();
-    if (!users) return res.status().json();
+    const users = await userService.getAllUsers();
     res.status(200).json(users);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
 };
 
 const getUserById = async (req, res) => {
@@ -18,9 +13,11 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { displayName, email, password, image } = req.body;
-  const user = await userService.createUser(displayName, email, password, image);
-  return res.status(201).json(user);
+  const { displayName, email, password, image } = req.body;  
+  const userEmailAndPassword = await userService.getEmailAndPassword(email, password);
+  if (userEmailAndPassword) return res.status(409).json({ message: 'User already registered' });
+  const result = await userService.createUser(displayName, email, password, image);
+  return res.status(201).json(result);
 };
 
 module.exports = {

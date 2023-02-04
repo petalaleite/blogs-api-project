@@ -9,8 +9,7 @@ userRoutes.get('/', validateJWT, userController.listUsers);
 userRoutes.get('/:id', validateJWT, userController.getUserById);
 userRoutes.post('/',
  validateNameAndPassword, 
- validateEmail, 
- validateJWT, 
+ validateEmail,
  userController.createUser);
 
 module.exports = userRoutes;
