@@ -13,7 +13,7 @@
 
 **Localmente:**
 
-**Necessita ter um banco de dados(MySql) instalado localmente**
+**Necessita ter um banco de dados (MySQL) instalado localmente**
 
 - `npm install`
 - `npm run prestart`
